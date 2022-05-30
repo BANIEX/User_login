@@ -5,7 +5,7 @@ if (elRegister){
 
     let array = [];
     document.getElementById("register").addEventListener("click", function(){
-        alert("1")
+        // alert("1");
         let name = document.getElementById("name").value.trim().toUpperCase();
         let email = document.getElementById('email').value.trim().toUpperCase();
         let password = document.getElementById('password').value;
@@ -16,20 +16,20 @@ if (elRegister){
             password
         }
         
-        alert("2")
+        // alert("2");
 
         var currentArray =  JSON.parse(localStorage.getItem("details"));
-        alert('3')
+        // alert('3');
         function findUser(user){
             return user.email == email;
         }
-        alert("4")
+        // alert("4");
         let loginUserObject 
         // if(loginUserObject){
             // alert("You have registered, proceed to Login")
 
         // }
-        alert("5")
+        // alert("5");
             
          if(name.length != 0 && email.length != 0 && password.length != 0){
             alert("successfully registered")
