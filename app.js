@@ -5,39 +5,90 @@ if (elRegister){
 
     let array = [];
     document.getElementById("register").addEventListener("click", function(){
-        let name = document.getElementById("name").value;
-        let email = document.getElementById('email').value;
+        alert("1")
+        let name = document.getElementById("name").value.trim().toUpperCase();
+        let email = document.getElementById('email').value.trim().toUpperCase();
         let password = document.getElementById('password').value;
-        alert("successfully registered")
+
         let user = {
             name,
             email,
             password
         }
+        
+        alert("2")
+
+        var currentArray =  JSON.parse(localStorage.getItem("details"));
+        alert('3')
+        function findUser(user){
+            return user.email == email;
+        }
+        alert("4")
+        let loginUserObject 
+        // if(loginUserObject){
+            // alert("You have registered, proceed to Login")
+
+        // }
+        alert("5")
+            
+         if(name.length != 0 && email.length != 0 && password.length != 0){
+            alert("successfully registered")
+            // let user = {
+            //     name,
+            //     email,
+            //     password
+            // }
+                // alert(user);
+            let detailsContent = localStorage.getItem("details");
+            // console.log(detailsContent);
+            if (detailsContent == null){
+                alert("there is no 'details' in local storage");
+                // We create the storage
+                array.push(user)
+                let arrayString = JSON.stringify(array);
+                localStorage.setItem("details", arrayString);
+
+
+                //2nd part
+                currentArray =  JSON.parse(localStorage.getItem("details"));
+                function findUser(user){
+                    return user.email == email;
+                }
+                loginUserObject = currentArray.find(user => findUser(user));
 
 
 
-        // alert(user);
-        let detailsContent = localStorage.getItem("details");
-        // console.log(detailsContent);
-        if (detailsContent == null){
-            alert("there is no 'details' in local storage");
-            // We create the storage
-            array.push(user)
-            let arrayString = JSON.stringify(array);
-            localStorage.setItem("details", arrayString);
+            }
+            //2nd part
+                currentArray =  JSON.parse(localStorage.getItem("details"));
+                function findUser(user){
+                    return user.email == email;
+                }
+                loginUserObject = currentArray.find(user => findUser(user));
+
+
+            if (loginUserObject){
+                alert("You have registered previously, proceed to login")
+
+
+            }
+
+            else{
+                let getter = localStorage.getItem("details");
+                // alert(getter)
+                let a = JSON.parse(getter);
+                // alert(a);
+                a.push(user);
+                // alert(a)
+
+                const updatedArray = JSON.stringify(a)
+                localStorage.setItem("details", updatedArray);
+            
+            }
+
         }
         else{
-            let getter = localStorage.getItem("details");
-            // alert(getter)
-            let a = JSON.parse(getter);
-            // alert(a);
-            a.push(user);
-            // alert(a)
-
-            const updatedArray = JSON.stringify(a)
-            localStorage.setItem("details", updatedArray);
-        
+            alert("Incomplete registration details.")
         }
     })
 }
@@ -47,7 +98,7 @@ if (elLogin){
 
 
         elLogin.addEventListener("click", function(){
-        let login_email = document.getElementById("login_email").value;
+        let login_email = document.getElementById("login_email").value.trim().toUpperCase();
         let login_password = document.getElementById("login_password").value;
         var currentArray =  JSON.parse(localStorage.getItem("details"));
         var currentArrayLength = JSON.parse(localStorage.getItem("details")).length
@@ -56,7 +107,7 @@ if (elLogin){
         function findUser(user){
             return user.email == login_email;
         }
-        let loginUserObject = currentArray.find(user => findUser(user))
+        let loginUserObject = currentArray.find(user => findUser(user));
         // alert(loginUserObject)
         console.log(loginUserObject)
         if (loginUserObject){
