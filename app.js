@@ -32,7 +32,7 @@ if (elRegister){
         // alert("5");
             
          if(name.length != 0 && email.length != 0 && password.length != 0){
-            alert("successfully registered")
+            // alert("successfully registered");
             // let user = {
             //     name,
             //     email,
@@ -42,11 +42,12 @@ if (elRegister){
             let detailsContent = localStorage.getItem("details");
             // console.log(detailsContent);
             if (detailsContent == null){
-                alert("there is no 'details' in local storage");
+                // alert("there is no 'details' in local storage");
                 // We create the storage
                 array.push(user)
                 let arrayString = JSON.stringify(array);
                 localStorage.setItem("details", arrayString);
+                
 
 
                 //2nd part
@@ -55,6 +56,7 @@ if (elRegister){
                     return user.email == email;
                 }
                 loginUserObject = currentArray.find(user => findUser(user));
+                alert("successfully registered");
 
 
 
@@ -83,6 +85,7 @@ if (elRegister){
 
                 const updatedArray = JSON.stringify(a)
                 localStorage.setItem("details", updatedArray);
+                alert("successfully registered");
             
             }
 
