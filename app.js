@@ -1,74 +1,85 @@
 let elRegister = document.getElementById("register");
 if (elRegister){
-    console.log(elRegister)
-
-
-    let array = [];
-    document.getElementById("register").addEventListener("click", function(){
-        let name = document.getElementById("name").value.trim().toUpperCase();
-        let email = document.getElementById('email').value.trim().toUpperCase();
-        let password = document.getElementById('password').value;
-
-        let user = {
-            name,
-            email,
-            password
-        }
-        var currentArray =  JSON.parse(localStorage.getItem("details"));
-        function findUser(user){
-            return user.email == email;
-        }
-        let loginUserObject 
-         if(name.length != 0 && email.length != 0 && password.length != 0){
-            let detailsContent = localStorage.getItem("details");
-            if (detailsContent == null){
-                array.push(user)
-                let arrayString = JSON.stringify(array);
-                localStorage.setItem("details", arrayString);
-                
-
-
-                //2nd part
-                currentArray =  JSON.parse(localStorage.getItem("details"));
-                function findUser(user){
-                    return user.email == email;
-                }
-                loginUserObject = currentArray.find(user => findUser(user));
-                alert("successfully registered");
-
-
-
-            }
-            //2nd part
-                currentArray =  JSON.parse(localStorage.getItem("details"));
-                function findUser(user){
-                    return user.email == email;
-                }
-                loginUserObject = currentArray.find(user => findUser(user));
-
-
-            if (loginUserObject){
-                alert("You have registered previously, proceed to login")
-
-
-            }
-
-            else{
-                let getter = localStorage.getItem("details");
-                let a = JSON.parse(getter);
-                a.push(user);
-
-                const updatedArray = JSON.stringify(a)
-                localStorage.setItem("details", updatedArray);
-                alert("successfully registered");
-            
-            }
-
+    console.log(elRegister);
+    window.addEventListener("load", function(){
+        var currentUserObject =  JSON.parse(localStorage.getItem("currentUser"));
+        if(currentUserObject){
+            location.href = "user_home.html"
         }
         else{
-            alert("Incomplete registration details.")
+                        
+                let array = [];
+                document.getElementById("register").addEventListener("click", function(){
+                    let name = document.getElementById("name").value.trim().toUpperCase();
+                    let email = document.getElementById('email').value.trim().toUpperCase();
+                    let password = document.getElementById('password').value;
+
+                    let user = {
+                        name,
+                        email,
+                        password
+                    }
+                    var currentArray =  JSON.parse(localStorage.getItem("details"));
+                    function findUser(user){
+                        return user.email == email;
+                    }
+                    let loginUserObject 
+                    if(name.length != 0 && email.length != 0 && password.length != 0){
+                        let detailsContent = localStorage.getItem("details");
+                        if (detailsContent == null){
+                            array.push(user)
+                            let arrayString = JSON.stringify(array);
+                            localStorage.setItem("details", arrayString);
+                            
+
+
+                            //2nd part
+                            currentArray =  JSON.parse(localStorage.getItem("details"));
+                            function findUser(user){
+                                return user.email == email;
+                            }
+                            loginUserObject = currentArray.find(user => findUser(user));
+                            alert("successfully registered");
+
+
+
+                        }
+                        //2nd part
+                            currentArray =  JSON.parse(localStorage.getItem("details"));
+                            function findUser(user){
+                                return user.email == email;
+                            }
+                            loginUserObject = currentArray.find(user => findUser(user));
+
+
+                        if (loginUserObject){
+                            alert("You have registered previously, proceed to login")
+
+
+                        }
+
+                        else{
+                            let getter = localStorage.getItem("details");
+                            let a = JSON.parse(getter);
+                            a.push(user);
+
+                            const updatedArray = JSON.stringify(a)
+                            localStorage.setItem("details", updatedArray);
+                            alert("successfully registered");
+                        
+                        }
+
+                    }
+                    else{
+                        alert("Incomplete registration details.")
+                    }
+                })
+
         }
+
     })
+
+
 }
 
 let elLogin = document.getElementById("login_login");
@@ -121,7 +132,11 @@ if (elUserHomePage){
     var currentUserObject =  JSON.parse(localStorage.getItem("currentUser"));
     window.addEventListener('load', function(){
         if(currentUserObject){
-            elUserHomePage.innerText = currentUserObject.name
+            elUserHomePage.innerText = currentUserObject.name;
+            this.document.getElementsByClassName("sign_out_userhome")[0].addEventListener("click", function(){
+                localStorage.removeItem("currentUser");
+                location.href = "index.html"
+            })
 
         }
         else{
