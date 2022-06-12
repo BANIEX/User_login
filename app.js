@@ -130,7 +130,7 @@ if (elLogin){
 let elUserHomePage = document.getElementById("use");
 if (elUserHomePage){
     var currentUserObject =  JSON.parse(localStorage.getItem("currentUser"));
-    window.addEventListener('load', function(){
+    window.addEventListener('DOMContentLoaded', function(){
         if(currentUserObject){
             elUserHomePage.innerText = currentUserObject.name;
             this.document.getElementsByClassName("sign_out_userhome")[0].addEventListener("click", function(){
