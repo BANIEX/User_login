@@ -119,7 +119,19 @@ if (elLogin){
 let elUserHomePage = document.getElementById("use");
 if (elUserHomePage){
     var currentUserObject =  JSON.parse(localStorage.getItem("currentUser"));
-    elUserHomePage.innerText = currentUserObject.name
+    window.addEventListener('load', function(){
+        if(currentUserObject){
+            elUserHomePage.innerText = currentUserObject.name
+
+        }
+        else{
+            this.location.href = "index.html";
+        }
+
+    })
+    
+
+    
 
 }
 
